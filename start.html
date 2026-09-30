@@ -20,6 +20,8 @@
     border-radius: 30px;
   }
   .num { color: #9be15d; font-weight: 700; margin-top: 18px; font-size: 1.1em; }
+  .disclosure { margin-top: 32px; font-size: .8em; color: #6b6b75; line-height: 1.6; }
+  .disclosure a { color: #9a9aa5; }
 </style>
 </head>
 <body>
@@ -28,6 +30,11 @@
   <p>Tap below — it'll open Messages with everything filled in. Just hit send.</p>
   <a class="btn" id="smslink" href="#">Text Kitchen Bot</a>
   <div class="num">(571) 714-8805</div>
+  <div class="disclosure">
+    By texting, you consent to receive SMS messages from Kitchen Bot. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help.<br>
+    <a href="https://james-plaschke.github.io/kitchen-bot-legal/terms.html">Terms</a> ·
+    <a href="https://james-plaschke.github.io/kitchen-bot-legal/privacy.html">Privacy Policy</a>
+  </div>
 </div>
 <script>
   var number = "+15717148805";
