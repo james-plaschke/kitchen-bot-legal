@@ -19,6 +19,11 @@
     text-decoration: none; font-weight: 700; font-size: 1.2em; padding: 18px 36px;
     border-radius: 30px;
   }
+  .consent { display: flex; gap: 12px; align-items: flex-start; text-align: left; margin-top: 26px;
+    background: #16161d; border: 1px solid #2a2a35; border-radius: 14px; padding: 16px; font-size: .9em;
+    color: #c9c9d1; line-height: 1.5; cursor: pointer; }
+  .consent input { width: 22px; height: 22px; margin-top: 2px; flex: none; accent-color: #0b93f6; }
+  a.btn.off { background: #3a3a45; color: #8a8a95; pointer-events: none; }
   .num { color: #9be15d; font-weight: 700; margin-top: 18px; font-size: 1.1em; }
   .disclosure { margin-top: 32px; font-size: .8em; color: #6b6b75; line-height: 1.6; }
   .disclosure a { color: #9a9aa5; }
@@ -28,7 +33,13 @@
 <div class="card">
   <h1>🍳 Kitchen Bot</h1>
   <p>Tap below — it'll open Messages with everything filled in. Just hit send.</p>
-  <a class="btn" id="smslink" href="#">Text Kitchen Bot</a>
+  <label class="consent">
+    <input type="checkbox" id="agree">
+    <span>I agree to receive SMS messages from Kitchen Bot at the number I text from. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. See the
+    <a href="https://james-plaschke.github.io/kitchen-bot-legal/terms.html" style="color:#9ec9ff">Terms</a> and
+    <a href="https://james-plaschke.github.io/kitchen-bot-legal/privacy.html" style="color:#9ec9ff">Privacy Policy</a>.</span>
+  </label>
+  <a class="btn off" id="smslink" href="sms:+15717148805?body=Hi%20Kitchen%20Bot!">Text Kitchen Bot</a>
   <div class="num">(571) 714-8805</div>
   <div class="disclosure">
     By texting, you consent to receive SMS messages from Kitchen Bot. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help.<br>
@@ -43,7 +54,12 @@
   // iOS Safari wants '&body=', Android/Chrome wants '?body='
   var sep = isIOS ? "&" : "?";
   var link = "sms:" + number + sep + "body=" + encodeURIComponent(body);
-  document.getElementById("smslink").href = link;
+  var btn = document.getElementById("smslink");
+  var agree = document.getElementById("agree");
+  btn.href = link;
+  agree.addEventListener("change", function () {
+    btn.classList.toggle("off", !agree.checked);
+  });
 </script>
 </body>
 </html>
