@@ -54,6 +54,9 @@
   // iOS Safari wants '&body=', Android/Chrome wants '?body='
   var sep = isIOS ? "&" : "?";
   var link = "sms:" + number + sep + "body=" + encodeURIComponent(body);
+  // anonymous landing-page counter; ?src=s1 in the bio link says which post sent them
+  var src = new URLSearchParams(location.search).get("src") || "";
+  new Image().src = "https://kitchen-bot-7xzu.onrender.com/p.gif?src=" + encodeURIComponent(src);
   var btn = document.getElementById("smslink");
   var agree = document.getElementById("agree");
   btn.href = link;
